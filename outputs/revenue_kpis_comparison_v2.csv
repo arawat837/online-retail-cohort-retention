@@ -1,0 +1,13 @@
+version,cohort_group,n_customers,aov,median_rev_6m,mean_rev_6m
+clean,Nov 2010,325,356.77,375.50,724.26
+clean,Dec 2010,76,487.06,447.66,769.52
+clean,Other Cohorts (Jan 2010 - Jun 2011),3685,421.67,529.85,989.23
+dedup,Nov 2010,325,342.49,359.69,681.74
+dedup,Dec 2010,76,401.35,302.08,595.78
+dedup,Other Cohorts (Jan 2010 - Jun 2011),3685,414.68,517.85,975.55
+clean_v2,Nov 2010,325,344.92,365.82,686.99
+clean_v2,Dec 2010,76,404.35,304.84,599.74
+clean_v2,Other Cohorts (Jan 2010 - Jun 2011),3685,416.24,523.05,979.86
+clean_v2_dedup,Nov 2010,325,342.49,359.69,681.74
+clean_v2_dedup,Dec 2010,76,401.35,302.08,595.78
+clean_v2_dedup,Other Cohorts (Jan 2010 - Jun 2011),3685,414.68,517.85,975.55

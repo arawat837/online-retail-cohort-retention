@@ -1,0 +1,9 @@
+Test ID,Test Description,Classification,Group 1 Rate (n1),Group 1 95% Wilson CI,Group 2 Rate (n2),Group 2 95% Wilson CI,z-statistic,p_value_display,p_value_exact,Bonferroni Threshold,Survives Correction?,Secondary Definition
+a,Nov 2010 in Dec 2010 vs. Pooled Jun–Oct 2010,Primary,17.54% (57/325),"[13.79%, 22.05%]",13.97% (173/1238),"[12.15%, 16.02%]",1.61,0.1065,0.106467,0.00625,N,—
+b,Nov 2010 in Jan 2011 vs. Pooled Jun–Oct 2010,Primary,9.23% (30/325),"[6.54%, 12.87%]",10.74% (133/1238),"[9.14%, 12.59%]",-0.79,0.4272,0.427238,0.00625,N,—
+c,Dec 2010 in Jan 2011 vs. Pooled Jun–Oct 2010,Primary,9.21% (7/76),"[4.53%, 17.81%]",10.74% (133/1238),"[9.14%, 12.59%]",-0.42,0.6742,0.674239,0.00625,N,—
+d,Seasonal Return (Nov 2011): Nov 2010 vs. Jan–Oct 2010,Primary,25.54% (83/325),"[21.10%, 30.55%]",20.46% (611/2986),"[19.05%, 21.95%]",2.14,0.0327,0.032747,0.00625,N,—
+e,repeat_90d (Later Day): Nov 2010 vs. Other Eligible,Primary,30.15% (98/325),"[25.42%, 35.35%]",42.42% (1665/3925),"[40.88%, 43.97%]",-4.31,<0.0001,1.64e-05,0.00625,Y,"Any-Distinct: 35.08% (114/325) vs 45.17% (1773/3925), z=-3.52, p=0.0004"
+f,repeat_90d (Later Day): Dec 2010 vs. Other Eligible,Primary,15.79% (12/76),"[9.27%, 25.60%]",42.42% (1665/3925),"[40.88%, 43.97%]",-4.66,<0.0001,3.1e-06,0.00625,Y,"Any-Distinct: 15.79% (12/76) vs 45.17% (1773/3925), z=-5.10, p=<0.0001"
+Post-hoc 1,Nov 2010 vs. Oct 2010 (Later Day repeat_90d),exploratory (chosen after seeing data),30.15% (98/325),"[25.42%, 35.35%]",38.20% (144/377),"[33.43%, 43.20%]",-2.24,0.0254,0.025382,0.00625,N,—
+Post-hoc 2,Nov 2010 vs. Sep–Oct 2010 Pooled (Later Day repeat_90d),exploratory (chosen after seeing data),30.15% (98/325),"[25.42%, 35.35%]",40.16% (249/620),"[36.37%, 44.07%]",-3.03,0.0024,0.002433,0.00625,Y,—

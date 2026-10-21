@@ -1,0 +1,11 @@
+# Raw and clean data directories
+data/raw/
+data/clean/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment / local scratch
+.venv/
+scratch/

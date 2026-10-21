@@ -1,0 +1,4 @@
+cohort_group,n_customers,median_6m_revenue,ci_95_low,ci_95_high,n_resamples,seed
+Nov 2010,325,365.82,319.75,418.05,10000,42
+Dec 2010,76,304.84,261.76,350.61,10000,42
+Other Cohorts (Jan 2010 - Jun 2011),3685,523.05,495.98,543.72,10000,42
