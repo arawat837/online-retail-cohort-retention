@@ -5,6 +5,14 @@ Do holiday-acquired customers (November–December 2010) return at lower rates t
 
 ---
 
+## Key Findings
+* **90-Day Repeat Purchase Rate (`repeat_90d`):** Nov 2010 ($n=325$) had a 90-day repeat purchase rate (later calendar day) of 30.15% (98/325, 95% Wilson CI [25.42%, 35.35%]) and Dec 2010 ($n=76$) had 15.79% (12/76, 95% Wilson CI [9.27%, 25.60%]), compared to 42.42% (1665/3925, 95% Wilson CI [40.88%, 43.97%]) for other eligible cohorts ($z = -4.31, p < 0.0001$ and $z = -4.66, p < 0.0001$; both survive Bonferroni correction $\alpha = 0.00625$).
+* **Same-Month Retention Activity:** In Dec 2010, active customer rate was 17.54% (57/325, 95% Wilson CI [13.79%, 22.05%]) for Nov 2010 ($n=325$) vs. 13.97% (173/1238, 95% Wilson CI [12.15%, 16.02%]) for pooled Jun–Oct 2010 ($z = 1.61, p = 0.1065$). In Jan 2011, active customer rate was 9.23% (30/325, 95% Wilson CI [6.54%, 12.87%]) for Nov 2010 ($n=325$) and 9.21% (7/76, 95% Wilson CI [4.53%, 17.81%]) for Dec 2010 ($n=76$), vs. 10.74% (133/1238, 95% Wilson CI [9.14%, 12.59%]) for pooled Jun–Oct 2010 ($z = -0.79, p = 0.4272$ and $z = -0.42, p = 0.6742$; neither survives correction).
+* **Seasonal Return (Nov 2011 Activity):** During the subsequent holiday peak in Nov 2011, active customer rate was 25.54% (83/325, 95% Wilson CI [21.10%, 30.55%]) for Nov 2010 ($n=325$) vs. 20.46% (611/2986, 95% Wilson CI [19.05%, 21.95%]) for Jan–Oct 2010 cohorts ($z = 2.14, p = 0.0327$; does not survive Bonferroni correction $\alpha = 0.00625$).
+* **6-Month Gross Revenue per Customer (`clean_v2`):** Median 6-month revenue was £365.82 (95% bootstrap CI [£319.75, £418.05]) for Nov 2010 ($n=325$) and £304.84 (95% bootstrap CI [£261.76, £350.61]) for Dec 2010 ($n=76$), compared to £523.05 (95% bootstrap CI [£495.98, £543.72]) for other cohorts Jan 2010–Jun 2011 ($n=3,685$). Mean 6-month revenue was £686.99 (Nov 2010), £599.74 (Dec 2010), and £979.86 (other cohorts).
+
+---
+
 ## Dataset
 * **Source:** [UCI Machine Learning Repository: Online Retail II Dataset](https://archive.ics.uci.edu/dataset/502/online+retail+ii) (`data/raw/online_retail_II.xlsx`).
 * **License:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/legalcode).
@@ -12,6 +20,7 @@ Do holiday-acquired customers (November–December 2010) return at lower rates t
 * **Total Raw Transactions:** 1,067,371 rows.
 * **Temporal Coverage:** `2009-12-01 07:45:00` to `2011-12-09 12:50:00`.
 * **Distinct Raw Customers:** 5,942 non-null customer IDs.
+* Download online_retail_II.xlsx from the UCI link above and place it at data/raw/online_retail_II.xlsx before running the scripts (data/ is gitignored).
 
 ---
 
@@ -70,6 +79,12 @@ Applied sequentially to produce `data/clean/clean_v2.parquet` (audit logged in `
 
 ## Empirical Results
 
+![Cohort Retention Heatmap](outputs/retention_heatmap.png)
+*Cohort retention rate heatmap across tenure months 0 to 6 for cohorts acquired between January 2010 and September 2011 (December 2011 unobserved cells masked).*
+
+![Calendar-Month Customer Activity Trend](outputs/calendar_activity_trend.png)
+*Share of previously acquired customers active in each calendar month from January 2010 to November 2011, with the December 2010 – January 2011 operational closure window shaded.*
+
 ### 1. Multiple-Comparison Hypothesis Testing Table (All 8 Tests)
 Evaluated with two-proportion z-tests and 95% Wilson confidence intervals against a Bonferroni-corrected threshold ($\alpha / 8 = 0.05 / 8 = 0.00625$). Sourced directly from `outputs/statistical_tests_bonferroni.csv`:
 
@@ -83,6 +98,12 @@ Evaluated with two-proportion z-tests and 95% Wilson confidence intervals agains
 | **f** | `repeat_90d` (Later Day): Dec 2010 vs. Other Eligible | Primary | 15.79% (12/76) | [9.27%, 25.60%] | 42.42% (1665/3925) | [40.88%, 43.97%] | -4.66 | <0.0001 | 0.0000031 | 0.00625 | **Y** | Any-Distinct: 15.79% (12/76) vs 45.17% (1773/3925), $z = -5.10, p < 0.0001$ |
 | **Post-hoc 1** | Nov 2010 vs. Oct 2010 (Later Day repeat_90d) | exploratory (chosen after seeing data) | 30.15% (98/325) | [25.42%, 35.35%] | 38.20% (144/377) | [33.43%, 43.20%] | -2.24 | 0.0254 | 0.025382 | 0.00625 | **N** | — |
 | **Post-hoc 2** | Nov 2010 vs. Sep–Oct 2010 Pooled (Later Day repeat_90d) | exploratory (chosen after seeing data) | 30.15% (98/325) | [25.42%, 35.35%] | 40.16% (249/620) | [36.37%, 44.07%] | -3.03 | 0.0024 | 0.002433 | 0.00625 | **Y** | — |
+
+![Same-Month Retention Comparison](outputs/same_month_comparison.png)
+*Same-month retention activity in December 2010 (Test a) and January 2011 (Tests b & c) against the pooled June–October 2010 baseline with 95% Wilson confidence intervals.*
+
+![Seasonal Return in November 2011](outputs/seasonal_return.png)
+*Seasonal return activity in the November 2011 holiday peak (Test d) comparing the November 2010 cohort against the January–October 2010 cohorts with 95% Wilson confidence intervals.*
 
 ---
 
@@ -104,6 +125,9 @@ Medians reported first, means reported second. Sourced directly from `outputs/re
 | Other Cohorts (Jan 2010 – Jun 2011) | 3,685 | dedup | £517.85 | — | £975.55 | £414.68 | All duplicates removed |
 | Other Cohorts (Jan 2010 – Jun 2011) | 3,685 | clean_v2_dedup | £517.85 | — | £975.55 | £414.68 | Sensitivity check |
 
+![Median 6-Month Gross Revenue with Bootstrap 95% CIs](outputs/median_revenue_6m_bootstrap.png)
+*Median 6-month gross revenue per customer across cohort groups with 95% bootstrap confidence intervals from 10,000 resamples on clean_v2.parquet.*
+
 ---
 
 ### 3. Timing-Adjacent Benchmarks for `repeat_90d`
@@ -114,6 +138,9 @@ Sourced from `outputs/statistical_tests_bonferroni.csv` and visualized in `outpu
 * **Oct 2010 Cohort ($n=377$):** Primary later day = 38.20% (144 / 377) [95% Wilson CI: 33.43%, 43.20%]; Secondary any distinct = 40.58% (153 / 377) [95% Wilson CI: 35.75%, 45.60%].
 * **Sep–Oct 2010 Pooled ($n=620$):** Primary later day = 40.16% (249 / 620) [95% Wilson CI: 36.37%, 44.07%]; Secondary any distinct = 42.74% (265 / 620) [95% Wilson CI: 38.90%, 46.68%].
 * **Other Eligible Cohorts ($n=3,925$):** Primary later day = 42.42% (1,665 / 3,925) [95% Wilson CI: 40.88%, 43.97%]; Secondary any distinct = 45.17% (1,773 / 3,925) [95% Wilson CI: 43.62%, 46.73%].
+
+![90-Day Repeat Purchase Benchmarks](outputs/repeat_90d_benchmarks.png)
+*90-day repeat purchase rate (primary later-calendar-day definition) across holiday cohorts, October 2010, September–October 2010, and other eligible cohorts with 95% Wilson confidence intervals.*
 
 ---
 
